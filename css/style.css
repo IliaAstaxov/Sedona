@@ -1,0 +1,1578 @@
+/* fonts */
+/* pt-sans-regular - latin_cyrillic */
+
+@font-face {
+  font-family: "PT Sans"; /* Название шрифта, можем переиначить, но тогда при обращении в CSS учитывать новое название */
+  font-style: normal; /* может быть отклоненный перевернутый и т.п.*/
+  font-weight: 400; /* жирность шрифта */
+  src: local("PT Sans"), local("PTSans"),
+    /* эта функция заходит в ОС компьютера, спаршивает, есть ли шрифт с таким названием, если есть шрифты берутся оттуда, если нет, качаются по пути ниже */
+      url("../fonts/pt-sans-v12-latin_cyrillic-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */
+      url("../fonts/pt-sans-v12-latin_cyrillic-regular.woff") format("woff"); /* Modern Browsers */
+}
+
+:root {
+  --basic-black: #000000;
+  --pale-black: #333333;
+  --transparent-black: rgba(0, 0, 0, 0.3);
+  --black-grey: #231f20;
+  --basic-white: #ffffff;
+  --smoky-white: #f2f2f2;
+  --aluminum-white: #a9a9a9;
+  --transparent-white: rgba(255, 255, 255, 0.9);
+  --full-transparent-white: rgba(255, 255, 255, 0.3);
+  --basic-grey: #eeeeee;
+  --dark-grey: #888888;
+  --dim-grey: #6a6a6a;
+  --silver: #ebebeb;
+  --basic-blue: #81b3d2;
+  --strong-blue: #669ec0;
+  --hard-blue: #5496bd;
+  --basic-brown: #766357;
+  --brown-grey: #604e43;
+  --grey-brown: #503e33;
+  --box-shadow: rgba(0, 1, 1, 0.15);
+  --border-color: #e5e5e5;
+  --sand-grey: #666666;
+  --dot-color: #ababab;
+  --transparent: rgba(0, 0, 0, 0);
+}
+
+/* базовые настройки body, задаем базовыей размер, цвет и межстрочный интервалы */
+
+.page {
+  height: 100%; /*чтобы подвал прижимался к нижней части страницы (уточнить этот момент) */
+}
+
+.page-body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-family: "PT Sans", "Times New Roman", sans-serif;
+  font-size: 14px;
+  line-height: 21px; /* межстрочный интервал */
+  font-weight: 400;
+  color: var(--basic-black);
+  text-align: center;
+  text-transform: uppercase;
+  /*это нужно для центрирования, разобраться позже */
+}
+
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  box-shadow: 0 5px 10px 0 #000000;
+}
+
+/* базовые настройки ссылок */
+
+.page a {
+  text-decoration: none; /*отменяем подчеркивание ссылкам */
+}
+
+/* базовые настройки цвета */
+
+img {
+  max-width: 100%;
+  height: auto; /*хак для картинок что по ширине расстягиваются в рамках нашего контейнера, а по высоте будет пропорциональна */
+}
+
+.page-header, /*задаем общую ширину основных контейнеров */
+.page-main,
+.page-footer {
+  width: 1200px;
+}
+
+.page-body {
+  position: relative;
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 0px;
+}
+
+.visuality-hidden {
+  /*прячем все, что должно быть спрятано */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* HEADER */
+
+/*header стилизация */
+
+.navigation {
+  /*красим навигацию в белый */
+  background-color: var(--basic-white);
+}
+
+.navigation-list {
+  /*убираем отступы у списка меню */
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-item {
+  /*задаем жирность, интервал и убираем булиты пунктам меню  */
+  line-height: 26px;
+  font-weight: bold;
+  list-style: none;
+}
+
+.navigation-item a {
+  /* красим ссылки в черный */
+  color: var(--basic-black);
+}
+
+/*header расстановка */
+
+.navigation {
+  /* даю относительное позиционирование, чтобы относительно этого блока ровнять logo, задаем минимальную высоту и внутренние отступы согласно макету */
+  min-height: 55px;
+  padding: 0 73px 0 73px;
+  position: relative;
+}
+
+.logo {
+  /* ровняю абсолютно спозиционированный логотип */
+  position: absolute;
+  right: 50%;
+  transform: translate(50%);
+}
+
+.navigation-list {
+  /*флексую список, высота списка задается из внутренних элементов navigation-item  */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navigation-item {
+  /* задаю размеры для элементов списка, минимальную высоту для возможности наполнения текстом */
+  width: 263px;
+  min-height: 56px;
+}
+
+.navigation-item a {
+  /* делаю ссылки блочными элементами, задаю размеры выранивание и отступы */
+  display: block;
+  width: 180px;
+  min-height: auto;
+  box-sizing: border-box;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navigation-item a {
+  /*даем горизонтальное выравнивание для текста ссылок*/
+  text-align: left;
+}
+
+.navigation-item:nth-child(3) a,
+.navigation-item:nth-child(4) a,
+.navigation-item:nth-child(4n + 3) a,
+.navigation-item:nth-child(4n + 4) a {
+  /* задаю для 3,4 блока ссылки и всех кратных им выравнивание внутри справа и выравнивание текста внутри так же справа  */
+  text-align: right;
+  margin-left: auto;
+}
+
+/* FOOTER */
+
+/*  Footer стилизация */
+
+.page-footer {
+  /*задаю фон всему footer */
+  background-color: var(--transparent-white);
+}
+
+.contact-number {
+  color: var(--basic-black);
+}
+
+.contact-information {
+  /*задаем размеры, жирность, высоту строки первому блоку footer */
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 26px;
+  text-align: center;
+}
+
+.social-list {
+  /*убираем булиты второму блоку footer,  */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-item {
+  /*созданным иконкам добавляем цвет */
+  background-color: var(--basic-blue);
+}
+
+.social-item:hover {
+  /* добавляем изменение цвета для иконок при наведении */
+  background-color: var(--strong-blue);
+}
+
+.social-item:active {
+  /* добавляем изменение цвета для иконок при активации */
+  background-color: var(--hard-blue);
+}
+
+.social-item:active path {
+  /* делаем картинку прозрачной при активации */
+  opacity: 0.3;
+}
+
+.copyright {
+  /*задаем высоту строки третьему блоку footer */
+  line-height: 26px;
+}
+
+.icon:active path {
+  /* меняем цвет картинки html академии при нажатии */
+  fill: var(--aluminum-white);
+}
+
+/*header расстановка */
+
+.page-footer {
+  /* задаем  минимальную высоту (для возможности наполнения), внутренние отступы (для центровки), делаем флекс контейнером */
+  padding: 0 73px 0 73px;
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 120px;
+  box-sizing: border-box;
+}
+
+.contact-information {
+  /*задаем размеры внутренние отступы первому блоку footer */
+  width: 327px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+  /*выравниваем само содержание с помощью флексов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-information {
+  width: 400px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+  /*выравниваем само содержание с помощью флексов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.copyright {
+  /*задаем размеры внутренние отступы третьему блоку footer */
+  width: 327px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-sizing: border-box;
+  /*выравниваем само содержание с помощью флексов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-list {
+  /*задаем размеры списку иконок, делаем список flex элементом для позиционирования иконок */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.social-item {
+  /*задаем размеры иконкам в кнопках соц сетей и отступы между ними */
+  display: block;
+  width: 46px;
+  height: 48px;
+  margin-right: 6px;
+}
+
+.social-link {
+  /*задаем ссылкам размеры и отступы ссылкам */
+  display: block;
+  width: 46px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-item:last-child {
+  /*задаем отступы, что в селекторе выше, но кроме последнего */
+  margin-right: 0;
+}
+
+.website {
+  /* задаем отступ между текстом и картинкой в третьем блоке */
+  margin-right: 8px;
+}
+
+/* MAIN HOTELS */
+
+.hotel-body {
+  text-align: left;
+}
+
+/* Main hotels стилизация */
+
+/* Main hotels расстановка */
+
+/* Фильтр отелей стилизация */
+
+.filter {
+  /*секции фильтра задаем фоновое изображение, контролируем его растяжение под увеличение блока */
+  background-image: url(../img/background.png);
+  background-size: cover;
+}
+
+.filter-group {
+  /* убираем браузерную стилизацию fieldset, задаем цвет для всех вложенных блоков */
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: var(--basic-white);
+}
+
+.checkbox-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.filter-group-headline {
+  /* для заголовков групп фильтров задаем жирность и размер текста */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.window-price {
+  /* для полей максимальнои и минимальной цены убираю браузерные стили, стилизую фон, и цвет текста */
+  padding: 0;
+  margin: 0;
+  border: 0px;
+  text-transform: inherit;
+  color: inherit;
+  background-color: var(--transparent);
+}
+
+.line {
+  /* крашу блок с ползунком в полупрозрачный  */
+  background-color: var(--full-transparent-white);
+}
+
+.active-line {
+  /* крашу вложенный активный блок с ползунком в белый */
+  background-color: var(--basic-white);
+}
+
+.filter-button {
+  /* задаю кнопке прозрачность, border с нужным цветом основные стили*/
+  background-color: var(--transparent);
+  border: 1px solid var(--basic-white);
+  color: inherit;
+  text-transform: inherit;
+}
+
+.filter-button:hover {
+  /* задаю кнопке прозрачность, border с нужным цветом основные стили*/
+  background-color: var(--basic-white);
+  color: var(--basic-black);
+}
+
+/* Фильтр отелей расстановка */
+
+.filter {
+  /* даю секции внутренние отступы и минимальную высоту */
+  padding: 20px 73px 30px 73px;
+  min-height: 217px;
+  box-sizing: border-box;
+}
+
+.form-of-filter {
+  /* флексую блоки в форме для корректного позиционирования чексбоксов и ползунка */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filters-checkbox {
+  /* задаем размеры для блока с чекбоксами */
+  width: 425px;
+}
+
+.filter-price {
+  /* задаем размеры для блока с ползунком */
+  width: 327px;
+}
+
+.filters-checkbox {
+  /* делаю большой блок чекбоксов флексом, чтобы распределить конкретные блоки чекбоксов */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.filter-checkbox {
+  /*задаю размеры малым блокам чекбоксов */
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.filter-group-headline {
+  /* задаю отступы между заголовком чекбокса и его пунктами */
+  margin-bottom: 24px;
+}
+
+.item-of-checkbox {
+  /* задаю отступы пунктам чекбоксов */
+  margin-bottom: 25px;
+  margin-left: 39px;
+}
+
+.item-of-checkbox:last-child {
+  /* отменяю отступ снизу последнему чекбоксу */
+  margin-bottom: 0;
+}
+
+.name-of-checkbox {
+  /* задаю позицию названию чебокса, чтобы относительно него спозиционировать "кнопки" чекбокса */
+  position: relative;
+}
+
+.name-of-checkbox::before {
+  /* создали картинку чекбокса, спозиционировали ее относительно названия чекбокса */
+  position: absolute;
+  content: "";
+  left: -39px;
+  width: 27px;
+  height: 23px;
+  background-image: url(../img/checkbox-off.svg);
+  background-repeat: no-repeat;
+}
+
+.checkbox:checked + .name-of-checkbox::before {
+  /* удаление пустого окна, когда появляется активное окно */
+  position: absolute;
+  content: "";
+  left: -39px;
+  width: 27px;
+  height: 23px;
+  background-image: url();
+  background-repeat: no-repeat;
+}
+
+.checkbox:checked + .name-of-checkbox::after {
+  /*создание активного окна чекбокса*/
+  position: absolute;
+  content: "";
+  left: -39px;
+  width: 27px;
+  height: 23px;
+  background-image: url(../img/checkbox-on.svg);
+  background-repeat: no-repeat;
+}
+
+.min-max-range {
+  /* делаю блок флексом, чтобы расположить поля ввода в одну строчку, позиционируем для позиционирования плашечки */
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid var(--basic-white);
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.min-max-range::before {
+  /* создаем плашечку отделяющим поля ввода друг от друга */
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 22px;
+  background-color: var(--basic-white);
+  left: 50%;
+  top: 6px;
+}
+
+.window-price {
+  /* задаю размеры полям ввода выравнимаю внутреннее содержимое посередине */
+  width: 155px;
+  height: 34px;
+  display: flex;
+  text-align: center;
+}
+
+.line {
+  /* создаю блок с ползунком, задаю размер и отступы */
+  height: 2px;
+  margin-top: 18px;
+  position: relative;
+  margin-bottom: 33px;
+}
+
+.active-line {
+  /* внутри блока-ползунка создаю активную линию, задаю ей размеры */
+  height: 2px;
+  width: 80%;
+}
+
+.line::before {
+  /* создаю ползунки */
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: var(--dot-color);
+  border: 8px solid var(--basic-white);
+  border-radius: 50%;
+  box-shadow: 0 2px 0 0 var(--dot-color);
+  top: -9px;
+  left: -7px;
+}
+
+.line::after {
+  /* создаю ползунки */
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: var(--dot-color);
+  border: 8px solid var(--basic-white);
+  border-radius: 50%;
+  box-shadow: 0 2px 0 0 var(--dot-color);
+  top: -9px;
+  left: 77%;
+}
+
+.line:hover::after,
+.line:hover::before {
+  /* настраиваю увеличение ползунков при наведении */
+  border: 9px solid var(--basic-white);
+}
+
+.filter-button {
+  /* отцентровываю кнопку "показать", задаю ей размеры */
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 133px;
+  height: 32px;
+  border: 2px solid var(--basic-white);
+  border-radius: 2px;
+}
+
+/* Сортировка отелей стилизация */
+
+.sort {
+  /* красим фон */
+  background-color: var(--basic-white);
+}
+
+.sort-list {
+  /*убираем браузерные отступы у списка сортировки, убираю булиты */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link-of-sort {
+  list-style: inherit;
+}
+
+.result-of-sort {
+  /* задаю размеры и жирность слову "найдено" */
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 26px;
+}
+
+.name-of-sort,
+.sort-item {
+  /* задаю размеры и жирность слову "сортировка" */
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.link-of-sort {
+  /* красим сортировочный список */
+  color: var(--transparent-black);
+  border-bottom: 1px dashed var(--basic-blue);
+}
+
+.link-of-sort:hover {
+  /* наведение */
+  color: var(--basic-blue);
+}
+
+.link-of-sort:focus {
+  /* нажатая ссылка */
+  color: var(--basic-blue);
+  border: none;
+}
+
+.link-of-sort:active {
+  /* ссылка в момент нажатия */
+  color: var(--basic-black);
+  border: none;
+}
+
+.sort-item .link-focus {
+  /* крашу первую ссылку в синий потому что нет свойства автофокус */
+  color: var(--basic-blue);
+  border: none;
+}
+
+.arrow-link:hover path {
+  /* красим стрелку при наведении */
+  fill: var(--basic-black);
+}
+
+.arrow-link:active path {
+  /* красим стрелку при нажатии */
+  fill: var(--basic-blue);
+}
+
+.arrow-link-down path {
+  /* красим значение нижней стрелки по умолчанию */
+  fill: var(--basic-blue);
+}
+
+/* Сортировка отелей позиционирование */
+
+.sort {
+  /* блоку сортировки задаю отступы, а так же флекс флекс контейнером, для элементов основного блока сортировки и стрелочек сортировки */
+  min-height: 87px;
+  padding-left: 73px;
+  padding-right: 73px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.main-block-of-sort {
+  /* задаю основному контейнеру сортировки размеры, а так же делаю его флекс контейнером для распределения "найдено" "сортировка" "пункты сортировки" */
+  width: 743px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.result-of-sort {
+  /*задаем размеры и отступы полю "найдено" */
+  width: 130px;
+  margin-right: 33px;
+  padding-top: 29px;
+  padding-bottom: 31px;
+}
+
+.name-of-sort {
+  /*задаем размеры и отступы полю "сортировка" */
+  width: 90px;
+  margin-right: 25px;
+  padding-top: 31px;
+  padding-bottom: 37px;
+}
+
+.sort-list {
+  /* задаем размеры списку, делаем его флексом для корректного расположения элементов */
+  width: 465px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sort-item {
+  /* задаем отступы пунктам сортировки */
+  margin-right: 32px;
+  padding-top: 32px;
+  padding-bottom: 36px;
+}
+
+.arrow {
+  /* создаю контейнер для стрелок который является флекс элементом и смещен вправо */
+  position: relative;
+  width: 127px;
+}
+
+.arrow-link {
+  /* делаю ссылки внутри блока контейнером, позиционирую */
+  border: none;
+  background-color: inherit;
+  background-repeat: no-repeat;
+}
+
+.arrow-link-up {
+  /* задаю позиционирование верхней ссылки и цвет в спокойном состоянии */
+  position: absolute;
+  top: 40px;
+  right: 25px;
+}
+
+.arrow-link-down {
+  /* задаю позиционирование нижней ссылки и цвет в спокойном состоянии */
+  position: absolute;
+  top: 40px;
+  right: 0px;
+}
+
+/* список отелей стилизация */
+
+.hotels {
+  /* делаю фон секции белым */
+  background-color: var(--basic-white);
+}
+
+.hotel-list {
+  /* убираем отступы и булиты у списков */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.name-of-hotel {
+  /* обнуляем отступы у заголовков, добавляем размеры */
+  padding: 0;
+  margin: 0;
+  font-size: 21px;
+  line-height: 26px;
+  font-weight: bold;
+}
+.interactive-of-name-hotel {
+  /*так как для интеративных эффектов в названиях отеля нужна ссылка, наследуем цвет теста ссылки */
+  color: inherit;
+}
+
+.interactive-of-name-hotel:hover {
+  /* настраиваем цвета при наведении в названии отеля */
+  color: var(--basic-blue);
+}
+
+.interactive-of-name-hotel:active {
+  /* настраиваем цвета при нажатии в названии отеля */
+  color: var(--transparent-black);
+}
+
+.type-of-hotel,
+.price-of-hotel {
+  /* цвет типам отеля и ценам за отель */
+  color: var(--pale-black);
+}
+
+.detail,
+.order {
+  padding: 0;
+  margin: 0;
+}
+
+.detail {
+  /* стилизуем кнопки по цветам, убираем базовую рамку, добавляем жирность */
+  color: var(--basic-white);
+  background-color: var(--basic-blue);
+  border: none;
+  font-weight: bold;
+}
+
+.detail:hover {
+  /* мышка наведенная на кнопку */
+  background-color: var(--strong-blue);
+}
+.detail:active {
+  /*кнопка в момент нажатия */
+  background-color: var(--hard-blue);
+  color: var(--full-transparent-white);
+}
+
+.order {
+  /* стилизуем кнопки по цветам, убираем базовую рамку, добавляем жирность */
+  color: var(--basic-white);
+  background-color: var(--basic-brown);
+  border: none;
+  font-weight: bold;
+}
+
+.order:hover {
+  /* мышка наведенная на кнопку */
+  background-color: var(--brown-grey);
+}
+.order:active {
+  /*кнопка в момент нажатия */
+  background-color: var(--grey-brown);
+  color: var(--full-transparent-white);
+}
+
+.raiting {
+  /* стилизуем плашку рейтинга */
+  color: var(--sand-grey);
+  background-color: var(--smoky-white);
+}
+
+/* список отелей позиционирование */
+
+.hotels {
+  /*даю внутренние отступы основному блоку */
+  padding-bottom: 120px;
+}
+
+.hotel-item {
+  /* даю внутренние отступы карточка отелей для центрирования */
+  padding-top: 30px;
+  padding-bottom: 30px;
+  /* делаю карточки отелей грид элементами, создаю сетку */
+  display: grid;
+  grid-template-columns: 237px minmax(117px, auto) minmax(141px, auto) 1fr 127px 73px;
+  grid-template-rows: 31px minmax(32px, auto) minmax(27px, auto);
+}
+
+.hotel-photo {
+  /* распределяю фотографию в сетке */
+  grid-column: 1 / 2;
+  grid-row: 1 / -1;
+}
+
+.name-of-hotel {
+  /* распределяю название отеля в сетке */
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+}
+
+.star {
+  /* распределяю местоположение оценки в звездах */
+  grid-column: 5 / 6;
+  grid-row: 1 / 2;
+}
+
+.type-of-hotel {
+  /* распределяю тип отеля в сетке */
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.price-of-hotel {
+  /* распределяю цену отеля в сетке */
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.detail {
+  /* распределяю кнопку "подробнее" в сетке */
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+
+.order {
+  /* распределяю кнопку "заказать" в сетке */
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+.raiting {
+  /* распределяю рейтинг отеля в сетке */
+  grid-column: -3 / -2;
+  grid-row: -2 / -1;
+}
+
+.hotel-photo {
+  /* выравниваю фотографию справа и слева внутри ячейки сетки */
+  margin-left: auto;
+  margin-right: 28px;
+}
+
+.star-top {
+  /* создаю звезды, задаю ширину контейнера, выравниваю его вгриде вправо, добавляю звезды с помощью background, выравниваю фон по правому верхнему углу */
+  width: 110px;
+  margin-left: auto;
+  background-image: url(../img/stars.svg);
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.star-normal {
+  /* создаю звезды, задаю ширину контейнера, выравниваю его вгриде вправо, добавляю звезды с помощью background, выравниваю фон по правому верхнему углу */
+  width: 70px;
+  margin-left: auto;
+  background-image: url(../img/stars.svg);
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.star-bad {
+  /* создаю звезды, задаю ширину контейнера, выравниваю его вгриде вправо, добавляю звезды с помощью background, выравниваю фон по правому верхнему углу */
+  width: 50px;
+  margin-left: auto;
+  background-image: url(../img/stars.svg);
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+
+.detail {
+  /* выравниваю кнопку подробнее внутри ячейки сетки */
+  margin-right: 10px;
+}
+
+.order {
+  /* выравниваю кнопку заказать внутри ячейки сетки */
+  margin-right: 19px;
+}
+
+.type-of-hotel,
+.price-of-hotel {
+  /* задаю отступы типу отеля и цене, чтобы контент не наславивался при наполнении  */
+  margin-bottom: 10px;
+}
+
+.order {
+  /* задаю размер кнопки "заказать" */
+  min-width: 141px;
+}
+
+.raiting {
+  /* выравниваю рейтинг по правую сторону, делаю элемент флексом, чтобы отцентрировать текст внутри */
+  width: 110px;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hotel-item {
+  /* задаю позиционирование карточкам отелей для добавления дочерних абсолютных элементов */
+  position: relative;
+}
+
+.hotel-item::after {
+  /* добавляю линии разгранечения между отелями */
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  bottom: 0px;
+}
+
+.hotel-item:first-child:before {
+  /* добавляю линии разгранечения первой карточке товара сверху */
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  top: 0px;
+}
+
+/* INDEX PAGE */
+
+/*  стилизация заголовка */
+
+.headline-block {
+  /* добавил задний фон блоку */
+  background-color: var(--basic-white);
+}
+
+.main-headline {
+  /* убираем отступы, задаем размеры и жирность  */
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 26px;
+}
+
+.headline-description {
+  /* убрал отступы, добавил размеры изменил цвет */
+  padding: 0;
+  margin: 0;
+  line-height: 26px;
+  color: var(--pale-black);
+}
+
+/* позиционирование заголовка */
+
+.headline-block {
+  /* добавил минимальную сывоту для блока, сделал элемент флексом для выравнивания содержимого по центру добавил внутренний отступ сверху и снизу для позиционирования контента */
+  min-height: 216px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.main-headline {
+  /* задаем отступы заголовку h1 */
+  margin-top: 42px;
+  margin-bottom: 54px;
+}
+
+.page-index::before {
+  /*создаем главное фото главной страницы" */
+  content: url(../img/welcome.svg);
+  display: block;
+  width: 1200px;
+  height: 509px;
+  background-image: url(../img/background\ main\ photo.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+}
+
+.headline-block::before {
+  /* создем белые линии под фотографией */
+  content: "";
+  display: block;
+  height: 57px;
+  width: 100%;
+  background-image: url(../img/white-arrow.svg);
+  background-repeat: no-repeat;
+  position: absolute;
+  top: -57px;
+}
+
+/* стилизация преимуществ */
+
+.headline-item,
+.number,
+.description {
+  /* убираем отступы */
+  padding: 0;
+  margin: 0;
+}
+
+.advantages-with-foto {
+  /* задаем фон блоку с фото */
+  background-color: var(--basic-blue);
+}
+
+.advantages-without-foto {
+  /* задаем фон блоку без фото */
+  background-color: var(--basic-grey);
+}
+
+.headline-item-with-foto,
+.number-with-foto,
+.description-with-foto {
+  /* задаем цвета в блоках с фото */
+  color: var(--basic-white);
+}
+
+.number-without-foto,
+.description-without-foto {
+  /* задаем цвета в блоках без фото */
+  color: var(--pale-black);
+}
+
+.headline-item {
+  /* убираем отступы, задаем размеры */
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+/* позиционирование преимуществ */
+
+.advantages {
+  /* создаем сетку для фото и такста преимуществ */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(256px, auto);
+}
+
+.adventure-foto {
+  /* распределяем положение фото в сетке */
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+.real-sity {
+  /* распределяем положение фото в сетке */
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+}
+
+.text-of-advantages {
+  /* контейнер с текстом преимуществ делаем флекс элементом и выравниваем */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headline-item {
+  /* задаем отступупы и ширину заголовкам */
+  width: 150px;
+  margin-bottom: 25px;
+  margin-top: 47px;
+}
+
+.number {
+  /* задаем отступупы номерам */
+  margin-bottom: 23px;
+}
+
+.description {
+  /* задаем отступупы и ширину описаниям */
+  margin-bottom: 20px;
+  width: 301px;
+}
+
+/* стилизация рекомендаций */
+
+.recomendation {
+  /* красим фон блока */
+  background-color: var(--basic-white);
+  box-shadow: 0px 5px 15px rgba(0, 1, 1, 0.2);
+}
+
+.recomendation-list {
+  /* убираем булиты списка */
+  list-style: none;
+}
+
+.recomendation-item,
+.recomendation-list,
+.headline-recomendation-item,
+.description-of-recimendation {
+  /*убираем отступы */
+  padding: 0;
+  margin: 0;
+}
+
+.headline-recomendation-item {
+  /* подбираем размеры заголовка и жирность */
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 21px;
+}
+
+.description-of-recimendation {
+  /* задаем цвет описания */
+  color: var(--pale-black);
+}
+
+/* позиционирование рекомендаций */
+
+.recomendation {
+  /* задаем минимальную высоту блока */
+  min-height: 330px;
+}
+
+.recomendation-list {
+  /*делю колонки на 3 части c помощью грида*/
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.text-of-recomendation {
+  /* такст внутри колонок делаю флекс контейнером */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.house::before {
+  /* создаем иконки псевдоэлементами */
+  content: "";
+  width: 75px;
+  height: 77px;
+  background-image: url(../img/house.svg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.eat::before {
+  /* создаем иконки псевдоэлементами */
+  content: "";
+  width: 75px;
+  height: 77px;
+  background-image: url(../img/burger.svg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.present::before {
+  /* создаем иконки псевдоэлементами */
+  content: "";
+  width: 75px;
+  height: 77px;
+  background-image: url(../img/present.svg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.text-of-recomendation {
+  /* внутренний отступ блока для позиционирования иконок */
+  padding-top: 55px;
+}
+
+.headline-recomendation-item {
+  /* задаем отступы и размеры заголовкам */
+  margin-top: 28px;
+  margin-bottom: 34px;
+  width: 110px;
+}
+
+.description-of-recimendation {
+  /* задаем отступы и размеры описанию */
+  margin-bottom: 10px;
+  width: 300px;
+}
+
+/* стилизация блока формы */
+
+.form-section {
+  background-color: var(--basic-white);
+}
+
+.interesting-headline,
+.interesting-description {
+  padding: 0;
+  margin: 0;
+}
+
+.interesting-headline {
+  /* задаем стилизацию заголовку блока */
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 24px;
+}
+
+.interesting-description {
+  /* задаем стилизацию описанию блока */
+  line-height: 24px;
+  color: var(--pale-black);
+}
+
+.block-name-of-search {
+  /* красим блок заголовка формы */
+  background-color: var(--basic-brown);
+}
+
+.name-of-search {
+  /*задаем размеры тексту заголовка формы */
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 26px;
+  text-transform: inherit;
+  color: var(--basic-white);
+  background-color: var(--transparent);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.name-of-search:hover {
+  /* настраиваем отображение блока заголовка формы при наведении */
+  background-color: var(--brown-grey);
+}
+
+.name-of-search:active {
+  /* настраиваем отображение блока заголовка формы при нажатии */
+  background-color: var(--grey-brown);
+  color: var(--full-transparent-white);
+}
+
+.body-of-form {
+  /* красим тело самой формы в белый */
+  display: none;
+  background-color: var(--basic-white);
+}
+
+.label-of-input {
+  /* настраиваем размеры заголовкам названий полей ввода */
+  font-weight: bold;
+  line-height: 26px;
+}
+
+.input-of-form {
+  /* стилизуем поле ввода формы */
+  line-height: 26px;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: var(--smoky-white);
+  border: 0px;
+  text-transform: inherit;
+}
+
+.input-of-form:hover {
+  /* стилизуем поле ввода формы при наведении */
+  background-color: var(--silver);
+}
+
+.input-of-form:focus {
+  /* стилизуем поле ввода формы при фокусе */
+  background-color: var(--basic-white);
+  border: 2px solid var(--border-color);
+}
+
+.form-button {
+  /* стилизуем кнопку формы */
+  color: var(--basic-white);
+  background-color: var(--basic-blue);
+  font-weight: bold;
+  font-size: 21px;
+  line-height: 26px;
+  text-transform: uppercase;
+}
+
+.form-button:hover {
+  /* стилизуем кнопку формы при наведении */
+  background-color: var(--strong-blue);
+}
+
+.form-button:active {
+  /* стилизуем кнопку формы при нажатии*/
+  background-color: var(--hard-blue);
+}
+
+/* позиционируем блок формы */
+
+.form-section {
+  /* задаем позиционирование, чтобы форма вышла на вервый план, задаем размеры блоку */
+  position: relative;
+  min-height: 291px;
+  padding-top: 58px;
+}
+
+.interesting-headline {
+  /* задаем отступы оглавлению */
+  display: block;
+  width: 435px;
+  margin-bottom: 38px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.interesting-description {
+  /* задаем отступы описанию */
+  width: 435px;
+  margin-bottom: 120px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.form-of-order {
+  /* задаем базовые размеры формы и выравнивание, даю абсолютное позиционирование */
+  min-height: 481px;
+  width: 568px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: -415px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.block-name-of-search {
+  /* задаем базовые размеры шапки формы */
+  min-height: 86px;
+}
+
+.name-of-search {
+  /* задаем размеры кнопке "названию" формы, выравниваем ее */
+  display: block;
+  width: 568px;
+  min-height: inherit;
+}
+
+.body-of-form {
+  /* задаем базовые размеры телу формы, задаем внутренние отступы для центровки, чертим грид ячейки */
+  min-height: 395px;
+  width: inherit;
+  padding: 55px;
+  box-sizing: border-box;
+  display: none;
+  grid-template-columns: 112px 114px 53px 65px 114px;
+  grid-template-rows: minmax(67px, auto) minmax(67px, auto) minmax(92px, auto) minmax(
+      57px,
+      auto
+    );
+}
+
+/* распределяем грид элементы по ячейкам */
+.date {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.date-input {
+  grid-column: 2 / -1;
+  grid-row: 1 / 2;
+}
+
+.date-out {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.date-out-input {
+  grid-column: 2 / -1;
+  grid-row: 2 / 3;
+}
+
+.adult {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.adult-input {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+
+.child {
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+}
+
+.child-input {
+  grid-column: 5 / -1;
+  grid-row: 3 / 4;
+}
+
+.form-button {
+  grid-column: 1 / -1;
+  grid-row: 4 / 5;
+}
+
+.input-of-form {
+  /* задаем высоту полей ввода */
+  height: 38px;
+}
+
+.label-of-input {
+  /* даем отступы для полей ввода */
+  text-align: left;
+  padding: 7px 5px 10px 0;
+}
+
+.long-input {
+  /* даем отступы для больших полей, даем позиционирование для декоративного изображения */
+  display: block;
+  padding: 0 10px 0 10px;
+  position: relative;
+  width: 346px;
+  box-sizing: border-box;
+}
+
+.short-input {
+  /* делаем выравнивание для маленьких полей, даем позиционирование для декоративного изображения */
+  text-align: center;
+  position: relative;
+  width: 114px;
+  box-sizing: border-box;
+}
+
+.adult-input,
+.child-input,
+.date-input,
+.date-out-input {
+  /* делаем div позиционированными, для абсолютного позиционирования внутренних элементов */
+  position: relative;
+}
+
+.short-plus {
+  /* создаем + в окнах ввода */
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background-repeat: no-repeat;
+  background-image: url(../img/grey-plus.svg);
+  top: 13px;
+  right: 10px;
+}
+
+.short-plus:hover {
+  /* добавлем + интерактив */
+  background-image: url(../img/black-plus.svg);
+}
+
+.short-plus:active {
+  /* добавлем + интерактив */
+  background-image: url(../img/blue-plus.svg);
+}
+
+.short-unplus {
+  /* создаем - в окнах ввода */
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background-repeat: no-repeat;
+  background-image: url(../img/grey-unplus.svg);
+  top: 17px;
+  left: 10px;
+}
+
+.short-unplus:hover {
+  /* добавлем - интерактив */
+  background-image: url(../img/black-unplus.svg);
+}
+
+.short-unplus:active {
+  /* добавлем - интерактив */
+  background-image: url(../img/blue-unplus.svg);
+}
+
+.calendar {
+  /* создаем значок календаря */
+  content: "";
+  position: absolute;
+  background-image: url(../img/calendar.svg);
+  width: 21px;
+  height: 23px;
+  right: 5px;
+  top: 6px;
+}
+
+.calendar:hover {
+  /* добавлем значку календаря интерактив */
+  background-image: url(../img/black-calendar.svg);
+}
+
+.calendar:active {
+  /* добавлем значку календаря интерактив */
+  background-image: url(../img/blue-calendar.svg);
+}
+
+/* карта позиционирование */
+
+.map-picture {
+  /* задаем самой картинке блочную модель, чтобы избавиться от отступов */
+  display: block;
+}
+
+/* анимация */
+
+@keyframes move {
+  from {
+    transform: translateY(-200px);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation-name: move;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+}
